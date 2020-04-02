@@ -6,17 +6,18 @@ import (
 	// "log"
 	"io/ioutil"
 
-	tm "github.com/buger/goterm"
 	"github.com/fatih/color"
 )
 
 // go build -o /path/go/bin
-func main() {
+func mainff1() {
 	var array []string
 	files, _ := ioutil.ReadDir(".")
 	green := color.New(color.FgRed)
 	read := color.New(color.FgGreen)
 	c := color.New(color.FgCyan)
+	// indent := "├──"
+	// nextIndent := " │
 
 	for _, val := range files {
 		if val.IsDir() {
@@ -46,18 +47,4 @@ func main() {
 			green.Println(res)
 		}
 	}
-	termBox()
-}
-
-func termBox() {
-	started := 100
-	finished := 250
-
-	// Based on http://golang.org/pkg/text/tabwriter
-	totals := tm.NewTable(0, 10, 5, ' ', 0)
-	fmt.Fprintf(totals, "Time\tStarted\tActive\tFinished\n")
-	fmt.Fprintf(totals, "%s\t%d\t%d\t%d\n", "All", started, started-finished, finished)
-	tm.Println(totals)
-
-	tm.Flush()
 }
