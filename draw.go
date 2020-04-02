@@ -10,6 +10,6 @@ func main() {
 	tm.Clear()
 	tm.MoveCursor(12, 12)
 	line := tm.NewLineChart(12, 12)
-	tm.Println(line.DrawLine())
+	tm.Println(line)
 	tm.Flush()
 }
