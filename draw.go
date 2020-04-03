@@ -2,14 +2,28 @@ package main
 
 import (
 	//"time"
-
-	tm "github.com/buger/goterm"
+	"log"
+	ui "github.com/gizak/termui/v3"
+	"github.com/gizak/termui/v3/widgets"
 )
 
+// https://github.com/gizak/termui
+
 func main() {
-	tm.Clear()
-	tm.MoveCursor(12, 12)
-	line := tm.NewLineChart(12, 12)
-	tm.Println(line)
-	tm.Flush()
+	if err := ui.Init(); err != nil {
+		log.Fatalf("failed to initialize termui: %v", err)
+	}
+	defer ui.Close()
+
+	p := widgets.NewParagraph()
+	p.Text = "Hello World!"
+	p.SetRect(0, 0, 25, 5)
+
+	ui.Render(p)
+
+	for e := range ui.PollEvents() {
+		if e.Type == ui.KeyboardEvent {
+			break
+		}
+	}
 }

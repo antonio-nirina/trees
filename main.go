@@ -10,7 +10,7 @@ import (
 )
 
 // go build -o /path/go/bin
-func mainff1() {
+func mainYY() {
 	var array []string
 	files, _ := ioutil.ReadDir(".")
 	green := color.New(color.FgRed)
@@ -25,12 +25,12 @@ func mainff1() {
 			path := fmt.Sprintf("%s%s", "./", val.Name())
 			files1, _ := ioutil.ReadDir(path)
 			for _, sub := range files1 {
-				c.Println(" |----", sub.Name())
+				c.Println(" ├──", sub.Name())
 				if sub.IsDir() {
 					path2 := fmt.Sprintf("%s%s%s%s", "./", val.Name(), "/", sub.Name())
 					files2, _ := ioutil.ReadDir(path2)
 					for _, sub2 := range files2 {
-						c.Println("     |----", sub2.Name())
+						c.Println("     ├──", sub2.Name())
 					}
 				} else {
 					c.Println("     |****", sub.Name())
